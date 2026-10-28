@@ -1,0 +1,1344 @@
+<!-- ... existing code ... -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InGen Ecological Field Division - Santuário Oquito IV</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts: Share Tech Mono & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ingen: {
+                            black: '#0a0d0e',
+                            dark: '#111618',
+                            card: '#161d20',
+                            border: '#243238',
+                            green: '#00ff88',
+                            greenMuted: '#00cc6a',
+                            amber: '#ffb700',
+                            red: '#ff3344',
+                            cyan: '#00e5ff',
+                            text: '#c5d1d6',
+                            muted: '#6b828d'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['"Share Tech Mono"', 'monospace'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0d0e;
+            color: #c5d1d6;
+            background-image: 
+                radial-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 0),
+                linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 24px 24px, 40px 40px, 40px 40px;
+        }
+
+        .scanline {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0, 0, 0, 0.3) 50%,
+                rgba(0, 0, 0, 0.3)
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.6;
+        }
+
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            font-size: 5vw;
+            font-weight: 900;
+            color: rgba(255, 51, 68, 0.03);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+            user-select: none;
+            font-family: 'Share Tech Mono', monospace;
+            border: 8px solid rgba(255, 51, 68, 0.03);
+            padding: 20px 40px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111618;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #243238;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff88;
+        }
+
+        .glow-green { text-shadow: 0 0 8px rgba(0, 255, 136, 0.4); }
+        .glow-amber { text-shadow: 0 0 8px rgba(255, 183, 0, 0.4); }
+        .glow-red { text-shadow: 0 0 8px rgba(255, 51, 68, 0.4); }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen relative overflow-x-hidden selection:bg-ingen-green selection:text-black">
+
+    <div class="scanline"></div>
+    <div class="watermark">CONFIDENTIAL // INGEN ECOLOGICAL FIELD DIVISION</div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        <!-- HEADER -->
+        <header class="bg-ingen-dark/90 border border-ingen-border rounded-lg p-5 shadow-2xl backdrop-blur-md relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-ingen-green/5 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-b border-ingen-border/60 pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 bg-ingen-green/10 border border-ingen-green/30 rounded-md text-ingen-green">
+                        <i data-lucide="shield-alert" class="w-8 h-8"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-mono bg-ingen-red/20 text-ingen-red px-2 py-0.5 rounded border border-ingen-red/30 tracking-wider">RESTRICTED ACCESS</span>
+                            <span class="text-xs font-mono text-ingen-muted">SYS.VER 3.10.8</span>
+                        </div>
+                        <h1 class="text-xl sm:text-2xl font-mono font-bold text-white tracking-tight glow-green">
+                            InGen Ecological Field Division
+                        </h1>
+                        <p class="text-xs font-mono text-ingen-muted">ARCHIVAL DATABASE: SANTUÁRIO OQUITO IV (JWE3)</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3 font-mono text-xs">
+                    <div class="bg-ingen-card border border-ingen-border p-2.5 rounded-md flex items-center gap-3">
+                        <i data-lucide="lock" class="w-4 h-4 text-ingen-amber"></i>
+                        <div>
+                            <p class="text-ingen-muted text-[10px]">CLASSIFICAÇÃO</p>
+                            <p class="text-ingen-amber font-bold">TOP SECRET // INTERNAL DOSSIER</p>
+                        </div>
+                    </div>
+                    <button id="phase-iv-btn" class="bg-ingen-green/10 hover:bg-ingen-green/20 border border-ingen-green/40 text-ingen-green px-4 py-2.5 rounded-md transition-all flex items-center gap-2 font-mono font-bold">
+                        <i data-lucide="file-text" class="w-4 h-4"></i>
+                        PROTOCOLO FASE IV
+                    </button>
+                </div>
+            </div>
+
+            <!-- TABS & SEARCH -->
+            <div class="mt-4 pt-2 space-y-3">
+                <div class="flex border-b border-ingen-border">
+                    <button id="tab-catalog" class="px-4 py-2 border-b-2 border-ingen-green text-ingen-green font-mono text-xs tracking-widest flex items-center gap-2 bg-ingen-green/10">
+                        <i data-lucide="database" class="w-4 h-4"></i> CATÁLOGO DE ESPÉCIES
+                    </button>
+                    <button id="tab-zones" class="px-4 py-2 border-b-2 border-transparent text-ingen-muted hover:text-ingen-green font-mono text-xs tracking-widest flex items-center gap-2 transition-all">
+                        <i data-lucide="map" class="w-4 h-4"></i> ZONAS ECOLÓGICAS
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+                    <div class="md:col-span-4 relative">
+                        <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-ingen-muted"></i>
+                        <input type="text" id="search-input" placeholder="Buscar espécie, código..." 
+                               class="w-full bg-ingen-black border border-ingen-border rounded-md pl-9 pr-4 py-2 text-sm text-white focus:outline-none focus:border-ingen-green transition-colors font-mono placeholder:text-ingen-muted/60">
+                    </div>
+
+                    <div class="md:col-span-3">
+                        <select id="trophic-filter" class="w-full bg-ingen-black border border-ingen-border rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:border-ingen-green font-mono">
+                            <option value="ALL">Todos os Nichos</option>
+                            <option value="Apex">Apex</option>
+                            <option value="Carnívoro Médio">Carnívoros Médios</option>
+                            <option value="Pequeno Predador">Pequenos Predadores</option>
+                            <option value="Saurópode Gigante">Saurópodes Gigantes</option>
+                            <option value="Herbívoro Médio">Herbívoros Médios</option>
+                            <option value="Herbívoro Pequeno">Herbívoros Pequenos</option>
+                            <option value="Onívoro">Onívoros</option>
+                            <option value="Fauna Aérea">Fauna Aérea</option>
+                        </select>
+                    </div>
+
+                    <div class="md:col-span-3">
+                        <select id="status-filter" class="w-full bg-ingen-black border border-ingen-border rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:border-ingen-green font-mono">
+                            <option value="ALL">Todos os Status</option>
+                            <option value="Em Expansão">Em Expansão</option>
+                            <option value="Estável">Estável</option>
+                            <option value="Vulnerável">Vulnerável</option>
+                        </select>
+                    </div>
+
+                    <div class="md:col-span-3">
+                        <select id="status-filter" class="w-full bg-ingen-black border border-ingen-border rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:border-ingen-green font-mono">
+                            <option value="ALL">Todos os Status</option>
+                            <option value="Em Expansão">Em Expansão</option>
+                            <option value="Estável">Estável</option>
+                            <option value="Vulnerável">Vulnerável</option>
+                            <option value="Em Risco">Em Risco</option>
+                            <option value="Superpopulação">Superpopulação</option>
+                        </select>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <select id="sort-filter" class="w-full bg-ingen-black border border-ingen-border rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:border-ingen-green font-mono">
+                            <option value="weight_desc">Maior Peso</option>
+                            <option value="length_desc">Maior Comprimento</option>
+                            <option value="height_desc">Maior Altura</option>
+                            <option value="name_asc">Nome (A-Z)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD STATS -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-ingen-card border border-ingen-border rounded-lg p-4">
+                <div class="flex items-center justify-between pb-2 border-b border-ingen-border/50">
+                    <span class="text-xs font-mono text-ingen-muted uppercase">Status do Projeto</span>
+                    <i data-lucide="activity" class="w-4 h-4 text-ingen-green"></i>
+                </div>
+                <div class="mt-3">
+                    <p class="text-lg font-mono font-bold text-ingen-green">FASE IV - CONCLUÍDA</p>
+                    <p class="text-xs text-ingen-muted mt-1">Encerramento da Observação Ativa.</p>
+                </div>
+            </div>
+
+            <div class="bg-ingen-card border border-ingen-border rounded-lg p-4">
+                <div class="flex items-center justify-between pb-2 border-b border-ingen-border/50">
+                    <span class="text-xs font-mono text-ingen-muted uppercase">Nascimentos Naturais</span>
+                    <i data-lucide="egg" class="w-4 h-4 text-ingen-amber"></i>
+                </div>
+                <div class="mt-3 flex items-baseline justify-between">
+                    <span class="text-2xl font-mono font-bold text-white">20+ Ninhos</span>
+                    <span class="text-xs font-mono text-ingen-amber bg-ingen-amber/10 px-2 py-0.5 rounded border border-ingen-amber/30">Ativos</span>
+                </div>
+            </div>
+
+            <div class="bg-ingen-card border border-ingen-border rounded-lg p-4">
+                <div class="flex items-center justify-between pb-2 border-b border-ingen-border/50">
+                    <span class="text-xs font-mono text-ingen-muted uppercase">Conflitos Critical</span>
+                    <i data-lucide="skull" class="w-4 h-4 text-ingen-red"></i>
+                </div>
+                <div class="mt-3">
+                    <p class="text-xs font-mono text-ingen-red font-bold">2 Apex Mortos</p>
+                    <p class="text-xs text-ingen-muted mt-1">1 T-Rex x Triceratops; 1 T-Rex x Carnotauro.</p>
+                </div>
+            </div>
+
+            <div class="bg-ingen-card border border-ingen-border rounded-lg p-4">
+                <div class="flex items-center justify-between pb-2 border-b border-ingen-border/50">
+                    <span class="text-xs font-mono text-ingen-muted uppercase">Anomalia Territorial</span>
+                    <i data-lucide="compass" class="w-4 h-4 text-ingen-cyan"></i>
+                </div>
+                <div class="mt-3">
+                    <p class="text-xs font-mono text-ingen-cyan font-bold">Isolamento Spinosaurus</p>
+                    <p class="text-xs text-ingen-muted mt-1">Complexo fluvial sob evitação por outras espécies.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN CONTENT SECTIONS -->
+        <main>
+            <!-- CATALOG SECTION -->
+            <section id="catalog-section">
+                <div id="species-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+            </section>
+
+            <!-- ZONES SECTION -->
+            <section id="zones-section" class="hidden space-y-6">
+                <div id="zones-container" class="space-y-6"></div>
+            </section>
+        </main>
+    </div>
+
+    <!-- GALLERY MODAL (POP-UP DE IMAGENS) -->
+    <div id="gallery-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 items-center justify-center p-4 hidden">
+        <div class="bg-ingen-card border border-ingen-green/40 rounded-lg max-w-4xl w-full max-h-[95vh] flex flex-col shadow-2xl relative overflow-hidden">
+            <div class="p-4 bg-ingen-dark border-b border-ingen-border flex items-center justify-between">
+                <div>
+                    <h3 id="gallery-species-name" class="font-mono font-bold text-ingen-green text-lg">---</h3>
+                    <p id="gallery-species-code" class="text-xs font-mono text-ingen-muted">REGISTRO FOTOGRÁFICO DE CAMPO</p>
+                </div>
+                <button id="close-gallery-btn" class="text-ingen-muted hover:text-white p-1">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <div class="p-4 flex-1 flex flex-col items-center justify-center overflow-hidden bg-ingen-black relative">
+                <div class="relative w-full h-[55vh] flex items-center justify-center overflow-hidden rounded border border-ingen-border">
+                    <img id="gallery-img" src="" alt="" class="max-h-full max-w-full object-contain transition-transform duration-300 cursor-zoom-in">
+                </div>
+                <p id="gallery-caption" class="text-xs font-mono text-ingen-text mt-3 text-center px-4 bg-ingen-dark/80 py-2 rounded border border-ingen-border/50 max-w-2xl">---</p>
+            </div>
+
+            <div class="p-4 bg-ingen-dark border-t border-ingen-border flex items-center justify-between">
+                <div id="gallery-tabs" class="flex gap-2"></div>
+                <span class="text-[10px] font-mono text-ingen-muted">SANTUÁRIO OQUITO IV // ARQUIVO VISUAL</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROTOCOL FASE IV MODAL -->
+    <div id="phase-iv-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 items-center justify-center p-4 hidden">
+        <div class="bg-ingen-card border border-ingen-green/40 rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            <div class="sticky top-0 bg-ingen-dark p-4 border-b border-ingen-border flex items-center justify-between z-10">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="clipboard-list" class="w-5 h-5 text-ingen-green"></i>
+                    <h3 class="font-mono font-bold text-white text-lg">PROTOCOLO DE MONITORAMENTO - FASE IV</h3>
+                </div>
+                <button id="close-phase-iv" class="text-ingen-muted hover:text-white transition-colors p-1">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6 font-sans text-sm">
+                <div class="bg-ingen-black/60 border border-ingen-amber/30 p-4 rounded-md">
+                    <p class="font-mono text-xs text-ingen-amber font-bold mb-1">DIRETRIZ CENTRAL INGEN</p>
+                    <p class="text-ingen-text">
+                        A Fase IV encerra-se sem novos reforços artificiais imediatos. A prioridade desloca-se para a verificação da sustentabilidade intergeracional e sobrevivência dos filhotes sem intervenção humana repetida.
+                    </p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-mono font-bold text-ingen-green text-base border-b border-ingen-border pb-1">Prioridades Recomendadas</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-xs">
+                        <div class="bg-ingen-black p-3 rounded border border-ingen-border">
+                            <span class="text-ingen-green font-bold">01. Velociraptor & Troodonte</span>
+                            <p class="text-ingen-muted mt-1">Acompanhar desenvolvimento dos 7 filhotes de Velociraptor e 3 de Troodonte até a idade adulta.</p>
+                        </div>
+                        <div class="bg-ingen-black p-3 rounded border border-ingen-border">
+                            <span class="text-ingen-green font-bold">02. Ornitomimo & Amargassauro</span>
+                            <p class="text-ingen-muted mt-1">Avaliar se o reforço artificial compensou perdas populacionais.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 bg-ingen-dark border-t border-ingen-border flex justify-end">
+                <button onclick="document.getElementById('phase-iv-modal').classList.add('hidden')" class="bg-ingen-green text-black font-mono font-bold px-4 py-2 rounded text-xs hover:bg-ingen-greenMuted transition-colors">
+                    CONFIRMAR LEITURA
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DATAS DE ZONAS ECOLÓGICAS
+        const zonesData = [
+            {
+                id: "lowlands",
+                name: "Planícies Baixas & Bacia Fluvial",
+                description: "Vastas planícies de pastagem interligadas por canais fluviais e vegetação de pequeno e médio porte.",
+                threatLevel: "Elevado",
+                ecologicalNotes: "Zonas preferenciais para grandes hadrossauros e megaherbívoros. Presença frequente de grandes carnívoros em momentos de caça."
+            },
+            {
+                id: "highlands",
+                name: "Planalto & Cânions Elevados",
+                description: "Região rochosa com declives acentuados, paredões de arenito e cachoeiras.",
+                threatLevel: "Crítico",
+                ecologicalNotes: "Território de caça do Carcharodontossauro e ponto de aninhamento para pterossauros nas escarpas verticais."
+            },
+            {
+                id: "forest",
+                name: "Floresta Densa & Complexo Fluvial Interceptador",
+                description: "Mata fechada com dossel alto que margeia grandes bacias hidrográficas e pântanos profundos.",
+                threatLevel: "Extremo",
+                ecologicalNotes: "Domínio exclusivo do Espinossauro no setor aquático e abrigo para carnívoros médios e predadores de emboscada como Deinosuchus e Metriacantossauro."
+            },
+            {
+                id: "transition",
+                name: "Zona de Transição & Corredores Florestais",
+                description: "Vegetação intermediária de matagal e faixas de transição entre planícies e floresta densa.",
+                threatLevel: "Médio",
+                ecologicalNotes: "Corredor estratégico para matilhas velozes de Velociraptor, Troodonte e pequenos terópodes em patrulha."
+            }
+        ];
+
+        // BASE DE DADOS COMPLETA DE ESPÉCIES (25 Espécies Exatas)
+        const speciesData = [
+            // ==================== 🦖 APEX ====================
+            {
+                id: "spino",
+                code: "SPN-001",
+                name: "Espinossauro",
+                trophic: "Apex",
+                zone: "forest",
+                length: "15.0 m",
+                height: "6.0 m",
+                weight: 9000,
+                status: "Estável",
+                risk: "Crítico",
+                population: "3 Fundadores + 1 Filhote",
+                reproduction: "Par monogâmico estabelecido; 1 filhote macho registrado.",
+                behavior: "Soberania absoluta no complexo de rios e pântanos. Mantém-se por recursos aquáticos.",
+                occurrences: "Isolamento territorial total do complexo fluvial por evitação de outras espécies.",
+                images: [
+                    {
+                        url: "Imagens/Spino02.png",
+                        caption: "REGISTRO VISUAL 01 // Espécime parcialmente submerso em navegação e patrulha aquática no complexo fluvial."
+                    },
+                    {
+                        url: "Imagens/Spino01.png",
+                        caption: "REGISTRO VISUAL 02 // Espinossauro em movimentação ativa nas margens de manguezal e pântano denso."
+                    }
+                ]
+            },
+            {
+                id: "trex",
+                code: "TRX-001",
+                name: "Tiranossauro",
+                trophic: "Apex",
+                zone: "lowlands",
+                length: "13.5 m",
+                height: "4.8 m",
+                weight: 8500,
+                status: "Vulnerável",
+                risk: "Crítico",
+                population: "4 Indivíduos (Reduzida)",
+                reproduction: "Estrutura familiar monogâmica; 2 filhotes criados em cooperação.",
+                behavior: "Extremamente territorial. Machos patrulham e enfrentam ameaças diretas; fêmeas mantêm cooperação na caça.",
+                occurrences: "1 macho velho morto após confronto. 1 T-Rex morto por coalizão de Triceratops.",
+                images: [
+                    {
+                        url: "Imagens/Trex01.png",
+                        caption: "REGISTRO VISUAL 01 // Fêmea de T-Rex em postura de caça e patrulha territorial nas planícies baixas."
+                    },
+                    {
+                        url: "Imagens/Trex02.png",
+                        caption: "REGISTRO VISUAL 02 // Machos de Trex em um confronto territorial."
+                    }
+                ]
+            },
+            {
+                id: "carcharo",
+                code: "CAR-001",
+                name: "Carcharodontossauro",
+                trophic: "Apex",
+                zone: "highlands",
+                length: "14.0 m",
+                height: "5.0 m",
+                weight: 8000,
+                status: "Em Expansão",
+                risk: "Extremo",
+                population: "7+ Indivíduos em expansão rápida",
+                reproduction: "Alta taxa reprodutiva (crescimento de 3 para 7+ espécimes).",
+                behavior: "Caçador terrestre veloz. Cuidado parental ativo com filhotes acompanhando as mães.",
+                occurrences: "Ataques constantes a filhotes de Titanossauro. Expansão rumo às zonas de T-Rex.",
+                images: [
+                    {
+                        url: "Imagens/Carcha1.png",
+                        caption: "REGISTRO VISUAL 01 // Carcharodontossauro prestes a predar um olorotitã nas planicies elevadas" 
+                    },
+                    {
+                        url: "Imagens/Carcha02.png",
+                        caption: "REGISTRO VISUAL 02 // Uma fêmea Carcharodontossauro com seu filhote patrulhando o território."
+                    }
+                ]
+            },
+
+            // ==================== 🦴 CARNÍVOROS MÉDIOS ====================
+            {
+                id: "irritator",
+                code: "IRT-015",
+                name: "Irritator",
+                trophic: "Carnívoro Médio",
+                zone: "forest",
+                length: "7.5 m",
+                height: "2.5 m",
+                weight: 1500,
+                status: "Vulnerável",
+                risk: "Médio",
+                population: "População Flutuante",
+                reproduction: "Reprodução natural confirmada (2M + 2F).",
+                behavior: "Piscívoro semiaquático e territorialista nos corredores fluviais.",
+                occurrences: "Repeliu T-Rex com auxílio do bando. Confrontos com Deinosuchus.",
+                images: [
+                    {
+                        url: "Imagens/Irri01.png",
+                        caption: "REGISTRO VISUAL 01 // Irritator explorando o habitat fluvial."
+                    },
+                    {
+                        url: "Imagens/Irri02.png",
+                        caption: "REGISTRO VISUAL 02 // Grupo de Irritators em defesa de território fluvial."
+                    }
+                ]
+            },
+            {
+                id: "metria",
+                code: "MTR-008",
+                name: "Metriacantossauro",
+                trophic: "Carnívoro Médio",
+                zone: "forest",
+                length: "7.5 m",
+                height: "2.6 m",
+                weight: 1900,
+                status: "Estável",
+                risk: "Baixo",
+                population: "Grupo Ativo (+4 Filhotes)",
+                reproduction: "4 nascimentos naturais confirmados.",
+                behavior: "Estratégia de discrição e evitação. Habita o interior da mata densa.",
+                occurrences: "Sucesso reprodutivo sem baixas registradas devido à esquiva de grandes predadores.",
+                images: [
+                    {
+                        url: "Imagens/Metria01.png",
+                        caption: "REGISTRO VISUAL 01 // Metriacantossauro camuflado na vegetação densa."
+                    },
+                    {
+                        url: "Imagens/Metria02.png",
+                        caption: "REGISTRO VISUAL 02 // Espécime observado abatendo uma presa de médio porte na floresta."
+                    }
+                ]
+            },
+            {
+                id: "deino",
+                code: "DNS-009",
+                name: "Deinosuchus",
+                trophic: "Carnívoro Médio",
+                zone: "forest",
+                length: "10.0 m",
+                height: "1.6 m",
+                weight: 8500,
+                status: "Estável",
+                risk: "Crítico",
+                population: "População Ativa em Rios",
+                reproduction: "Reprodução confirmada nos rios interiores.",
+                behavior: "Predador de emboscada nas margens fluviais.",
+                occurrences: "Predação frequente de Ornitomimos. Registrado canibalismo de filhotes.",
+                images: [
+                    {
+                        url: "Imagens/Deinosuc1.png",
+                        caption: "REGISTRO VISUAL 01 // Deinosuchus imóvel aguardando presas na margem."
+                    },
+                    {
+                        url: "Imagens/Deinosuc2.png",
+                        caption: "REGISTRO VISUAL 02 // Deinosuchus em repouso na margem do rio."
+                    }
+                ]
+            },
+            {
+                id: "carno",
+                code: "CRN-012",
+                name: "Carnotauro",
+                trophic: "Carnívoro Médio",
+                zone: "transition",
+                length: "8.5 m",
+                height: "3.0 m",
+                weight: 2200,
+                status: "Estável",
+                risk: "Médio",
+                population: "1M + 2F + 2 Filhotes",
+                reproduction: "Reprodução natural bem-sucedida (2 filhotes).",
+                behavior: "Caçador de perseguição veloz e agitado. Vive na transição entre T-Rex e rios.",
+                occurrences: "Expulso dos rios por Irritators. Combate violento registrado contra T-Rex idoso.",
+                images: [
+                    {
+                        url: "Imagens/Carno01.png",
+                        caption: "REGISTRO VISUAL 01 // Carnotauro macho em patrulha de território na borda da floresta."
+                    },
+                    {
+                        url: "Imagens/Carno2.png",
+                        caption: "REGISTRO VISUAL 02 // Um macho defende sua prole de um tiranossauro."
+                    }
+                ]
+            },
+            {
+                id: "cerato",
+                code: "CRT-004",
+                name: "Ceratossauro",
+                trophic: "Carnívoro Médio",
+                zone: "transition",
+                length: "8.0 m",
+                height: "3.0 m",
+                weight: 2000,
+                status: "Estável",
+                risk: "Médio",
+                population: "1M + 2F + 4 Filhotes",
+                reproduction: "4 filhotes nascidos naturally.",
+                behavior: "Discreto e oportunista. Aproveita carcaças de grandes sauropodes.",
+                occurrences: "Macho defendeu prole contra T-Rex. 1 fêmea morta por Estegossauro.",
+                images: [
+                    {
+                        url: "Imagens/Cerato1.png",
+                        caption: "REGISTRO VISUAL 01 // Ceratossauro atravessando a vegetação de transição em busca de carcaças."
+                    },
+                    {
+                        url: "Imagens/Cerato2.png",
+                        caption: "REGISTRO VISUAL 02 // Um macho em um confronto territorial com um Deinocheirus."
+                    }
+                ]
+            },
+
+            // ==================== 🐾 CARNÍVOROS PEQUENOS ====================
+            {
+                id: "raptor",
+                code: "RPT-007",
+                name: "Velociraptor",
+                trophic: "Pequeno Predador",
+                zone: "transition",
+                length: "3.5 m",
+                height: "1.8 m",
+                weight: 180,
+                status: "Em Expansão",
+                risk: "Médio",
+                population: "7 Filhotes Nascidos + Adultos",
+                reproduction: "Nascimento natural massivo de 7 filhotes.",
+                behavior: "Caça coordenada em bando utilizando alta cobertura vegetal.",
+                occurrences: "Ataque tático em bando registrado contra Ornitomimo.",
+                images: [
+                    {
+                        url: "Imagens/Raptor01.png",
+                        caption: "REGISTRO VISUAL 01 // Velociraptor espreitando entre as árvores."
+                    },
+                    {
+                        url: "Imagens/Raptor02.png",
+                        caption: "REGISTRO VISUAL 02 // Velociraptor caminhando pelas zonas de transição em patrulha territorial."
+                    }
+                ]
+            },
+            {
+                id: "troodon",
+                code: "TRD-021",
+                name: "Troodonte",
+                trophic: "Pequeno Predador",
+                zone: "transition",
+                length: "2.4 m",
+                height: "1.5 m",
+                weight: 86,
+                status: "Estável",
+                risk: "Baixo",
+                population: "3 Filhotes + Ninhos Ativos",
+                reproduction: "3 filhotes nascidos e ovos em incubação.",
+                behavior: "Predador oportunista pequeno, caçador noturno com mordida peçonhenta.",
+                occurrences: "Limpeza de carcaças e caça de microfauna sem conflitos diretos.",
+                images: [
+                    {
+                        url: "Imagens/Troo1.png",
+                        caption: "REGISTRO VISUAL 01 // Troodonte correndo pela planície."
+                    },
+                    {
+                        url: "Imagens/Troo2.png",
+                        caption: "REGISTRO VISUAL 02 // Troodonte aproveitando carcaça de pequeno herbívoro para alimentação."
+                    }
+                ]
+            },
+
+            // ==================== 🦕 SAURÓPODES GIGANTES ====================
+            {
+                id: "brachio",
+                code: "BRC-002",
+                name: "Braquiossauro",
+                trophic: "Saurópode Gigante",
+                zone: "lowlands",
+                length: "25.0 m",
+                height: "15.0 m",
+                weight: 48000,
+                status: "Estável",
+                risk: "Mínimo",
+                population: "Vasto Rebanho Adulto",
+                reproduction: "Ovos sob monitoramento térmico.",
+                behavior: "Alimenta-se do dossel alto. Adultos são intocáveis por predadores.",
+                occurrences: "Morte natural de anciãos provê biomassa crucial para os carnívoros.",
+                images: [
+                    {
+                        url: "Imagens/Brach1.png",
+                        caption: "REGISTRO VISUAL 01 // Uma braquiossauro caminhando sobre um rio em conjunto com seu filhote."
+                    },
+                    {
+                        url: "Imagens/Brach2.png",
+                        caption: "REGISTRO VISUAL 02 // Silhueta do bando ao amanhecer na planície."
+                    }
+                ]
+            },
+            {
+                id: "titano",
+                code: "TTN-001",
+                name: "Titanossauro",
+                trophic: "Saurópode Gigante",
+                zone: "highlands",
+                length: "40.0 m",
+                height: "20.0 m",
+                weight: 60000,
+                status: "Vulnerável",
+                risk: "Médio",
+                population: "Adultos Estáveis (Alta perdas em juvenis)",
+                reproduction: "Alta mortalidade de filhotes por caça.",
+                behavior: "Massa corporal extrema protege adultos, mas filhotes são alvos.",
+                occurrences: "Filhotes sofrem predação contínua por Carcharodontossauros.",
+                images: [
+                    {
+                        url: "Imagens/Titano1.png",
+                        caption: "REGISTRO VISUAL 01 // Titanossauro adulto em um cortejo reprodutivo."
+                    },
+                    {
+                        url: "Imagens/Titano2.png",
+                        caption: "REGISTRO VISUAL 02 // Registro aéreo do deslocamento do rebanho."
+                    }
+                ]
+            },
+
+            // ==================== 🌿 HERBÍVOROS MÉDIOS ====================
+            {
+                id: "oloro",
+                code: "OLR-004",
+                name: "Olorotitã",
+                trophic: "Herbívoro Médio",
+                zone: "lowlands",
+                length: "8.0 m",
+                height: "4.0 m",
+                weight: 3100,
+                status: "Estável",
+                risk: "Baixo",
+                population: "Rebanho Ativo",
+                reproduction: "Alta taxa de eclosão em áreas abertas.",
+                behavior: "Hadrossaurídeo sociável com crista distinta. Vive em grandes grupos fluviais.",
+                occurrences: "Integração harmoniosa com Parassaurolofos e Edmontossauros.",
+                images: [
+                    {
+                        url: "Imagens/Oloro1.png",
+                        caption: "REGISTRO VISUAL 01 // Rebanho de Olorotitãs em estado de alerta."
+                    },
+                    {
+                        url: "Imagens/Oloro2.png",
+                        caption: "REGISTRO VISUAL 02 // Filhote de Olorotitã."
+                    }
+                ]
+            },
+            {
+                id: "para",
+                code: "PRS-012",
+                name: "Parassaurolofo",
+                trophic: "Herbívoro Médio",
+                zone: "lowlands",
+                length: "9.5 m",
+                height: "4.0 m",
+                weight: 3500,
+                status: "Estável",
+                risk: "Baixo",
+                population: "Grande Manada Consolidada",
+                reproduction: "Ninhos coloniais protegidos por adultos.",
+                behavior: "Comunicação ressonante por crista. Alerta precoce para todo o ecossistema.",
+                occurrences: "Emite sons de alarme ao detectar terópodes grandes.",
+                images: [
+                    {
+                        url: "Imagens/Para1.png",
+                        caption: "REGISTRO VISUAL 01 // Fêmeas de parassaurolofo socializando."
+                    },
+                    {
+                        url: "Imagens/Para2.png",
+                        caption: "REGISTRO VISUAL 02 // Indíviduo emitindo vocalização característica."
+                    }
+                ]
+            },
+            {
+                id: "amarga",
+                code: "AMG-006",
+                name: "Amargassauro",
+                trophic: "Herbívoro Médio",
+                zone: "transition",
+                length: "10.0 m",
+                height: "3.4 m",
+                weight: 5000,
+                status: "Vulnerável",
+                risk: "Médio",
+                population: "Grupo Pequeno sob Reforço",
+                reproduction: "Reprodução lenta; sob reforço artificial na Fase IV.",
+                behavior: "Pequeno dicraeossaurídeo com espinhos cervicais defensivos imponentes.",
+                occurrences: "Proteção contra pequenos predadores via chicoteadas de cauda e espinhos.",
+                images: [
+                    {
+                        url: "Imagens/Amarga1.png",
+                        caption: "REGISTRO VISUAL 01 // Grupo de Amargassauros atravessnado um rio."
+                    },
+                    {
+                        url: "Imagens/Amarga2.png",
+                        caption: "REGISTRO VISUAL 02 // Detalhe da fileira dupla de espinhos no pescoço enquanto pasta."
+                    }
+                ]
+            },
+            {
+                id: "stego",
+                code: "STG-005",
+                name: "Estegossauro",
+                trophic: "Herbívoro Médio",
+                zone: "transition",
+                length: "9.0 m",
+                height: "4.0 m",
+                weight: 7200,
+                status: "Estável",
+                risk: "Médio",
+                population: "Bando Defensivo Territorial",
+                reproduction: "Nascimentos regulares em Clareiras.",
+                behavior: "Agressivo se encurralado. Defesa letal via espetos caudais (thagomizer).",
+                occurrences: "Morte confirmada de 1 Ceratossauro em confronto de defesa territorial.",
+                images: [
+                    {
+                        url: "Imagens/Estego1.png",
+                        caption: "REGISTRO VISUAL 01 // Estegossauro vagando sobre a vegetação."
+                    },
+                    {
+                        url: "Imagens/Estego2.png",
+                        caption: "REGISTRO VISUAL 02 // Ninho de Estegossauro."
+                    }
+                ]
+            },
+            {
+                id: "trike",
+                code: "TRK-010",
+                name: "Triceratops",
+                trophic: "Herbívoro Médio",
+                zone: "lowlands",
+                length: "9.0 m",
+                height: "3.0 m",
+                weight: 8200,
+                status: "Estável",
+                risk: "Baixo",
+                population: "Bando Defensivo Estabelecido",
+                reproduction: "Estável com filhotes protegidos no centro da manada.",
+                behavior: "Formação de coalizões defensivas extremamente agressivas contra terópodes.",
+                occurrences: "Coalizão defensiva enfrentou e matou 1 T-Rex adulto.",
+                images: [
+                    {
+                        url: "Imagens/Trike1.png",
+                        caption: "REGISTRO VISUAL 01 // Bando de Triceratops pastando."
+                    },
+                    {
+                        url: "Imagens/Trike2.png",
+                        caption: "REGISTRO VISUAL 02 // Rebanho de triceratops em posição defensiva contra um Tiranossauro."
+                    }
+                ]
+            },
+            {
+                id: "anky",
+                code: "ANK-006",
+                name: "Anquilossauro",
+                trophic: "Herbívoro Médio",
+                zone: "lowlands",
+                length: "8.0 m",
+                height: "2.7 m",
+                weight: 7000,
+                status: "Estável",
+                risk: "Mínimo",
+                population: "População Consolidada",
+                reproduction: "Lenta porém contínua.",
+                behavior: "Blindagem pesada e maça caudal letal.",
+                occurrences: "Matou 1 Carcharodontossauro durante investida de caça do predador.",
+                images: [
+                    {
+                        url: "Imagens/Anqui1.png",
+                        caption: "REGISTRO VISUAL 01 // Anquilossauro macho vagando em vegetação rasteira."
+                    },
+                    {
+                        url: "Imagens/Anqui2.png",
+                        caption: "REGISTRO VISUAL 02 // Anquilossauro em posição de defesa contra um carcharodontossauro."
+                    }
+                ]
+            },
+            {
+                id: "maia",
+                code: "MAI-007",
+                name: "Maiassauro",
+                trophic: "Herbívoro Médio",
+                zone: "lowlands",
+                length: "9.0 m",
+                height: "3.0 m",
+                weight: 4000,
+                status: "Estável",
+                risk: "Baixo",
+                population: "Colônia de Ninhos Ativa",
+                reproduction: "Excepcional cuidado parental com grandes colônias de aninhamento.",
+                behavior: "Gregarismo extremo. Adultos revezam vigilância dos filhotes.",
+                occurrences: "Ninhos comunitários sob proteção vigilante de machos e fêmeas.",
+                images: [
+                    {
+                        url: "Imagens/Maia1.png",
+                        caption: "REGISTRO VISUAL 01 // Macho de maiassauro em patrulha de vigilância sobre a colônia de ninhos."
+                    },
+                    {
+                        url: "Imagens/Maia2.png",
+                        caption: "REGISTRO VISUAL 02 // Fêmea de maiassauro exibindo comportamento maternal."
+                    }
+                ]
+            },
+
+            // ==================== 🌱 HERBÍVOROS PEQUENOS ====================
+            {
+                id: "hipsilo",
+                code: "HYP-001",
+                name: "Hipsilofodonte",
+                trophic: "Herbívoro Pequeno",
+                zone: "transition",
+                length: "2.3 m",
+                height: "1.0 m",
+                weight: 50,
+                status: "Em Expansão",
+                risk: "Mínimo",
+                population: "Múltiplos Bandos Rápidos",
+                reproduction: "Ciclo de reprodução veloz.",
+                behavior: "Pequeno, ágil e esquivo. Move-se velozmente no sub-bosque.",
+                occurrences: "Principais presas de pequenos predadores e carnívoros juvenis.",
+                images: [
+                    {
+                        url: "Imagens/Hyp1.png",
+                        caption: "REGISTRO VISUAL 01 // Hipsilofodontes correndo em direção a floresta densa para se proteger de predadores."
+                    },
+                    {
+                        url: "Imagens/Hyp2.png",
+                        caption: "REGISTRO VISUAL 02 // Espécime repousando sobre a margem do rio."
+                    }
+                ]
+            },
+            {
+                id: "ornito",
+                code: "ORN-019",
+                name: "Ornitomimo",
+                trophic: "Herbívoro Pequeno",
+                zone: "lowlands",
+                length: "3.8 m",
+                height: "2.4 m",
+                weight: 260,
+                status: "Vulnerável",
+                risk: "Baixo",
+                population: "Recomposição sob Reforço",
+                reproduction: "Nascimentos artificiais e naturais compensando perdas.",
+                behavior: "Herbívoro cursorial de alta velocidade em planícies abertas.",
+                occurrences: "Sofre predação intensa nas margens de rios por Deinosuchus.",
+                images: [
+                    {
+                        url: "Imagens/Orni1.png",
+                        caption: "REGISTRO VISUAL 01 // Macho de Ornitomimo na vegetação densa."
+                    },
+                    {
+                        url: "Imagens/Orni2.png",
+                        caption: "REGISTRO VISUAL 02 // Jovem Ornitomimo fugindo de um Raptor."
+                    }
+                ]
+            },
+            {
+                id: "draco",
+                code: "DRC-022",
+                name: "Dracorex",
+                trophic: "Herbívoro Pequeno",
+                zone: "transition",
+                length: "3.0 m",
+                height: "1.3 m",
+                weight: 150,
+                status: "Estável",
+                risk: "Mínimo",
+                population: "Bando Pequeno",
+                reproduction: "Ninhos em encostas arborizadas.",
+                behavior: "Paquicefalossaurídeo com crânio cheio de espinhos sem cúpula proeminente.",
+                occurrences: "Confrontos ritualísticos de cabeçadas de raspão entre machos.",
+                images: [
+                    {
+                        url: "Imagens/Draco1.png",
+                        caption: "REGISTRO VISUAL 01 // Dracorex em repousando na vegetação rasteira."
+                    },
+                    {
+                        url: "Imagens/Draco2.png",
+                        caption: "REGISTRO VISUAL 02 // Machos de Dracorex em confronto ritualístico."
+                    }
+                ]
+            },
+
+            // ==================== 🍃 ONÍVOROS ====================
+            {
+                id: "ovi",
+                code: "OVI-015",
+                name: "Oviraptor",
+                trophic: "Onívoro",
+                zone: "transition",
+                length: "2.0 m",
+                height: "1.0 m",
+                weight: 40,
+                status: "Estável",
+                risk: "Mínimo",
+                population: "Comunidade Territorial",
+                reproduction: "Excelente incubação parental de ninhos em espiral.",
+                behavior: "Alimenta-se de frutos, pequenos vertebrados, moluscos e ovos.",
+                occurrences: "Proteção feroz do ninho contra incursões de pequenos terópodes.",
+                images: [
+                    {
+                        url: "Imagens/Ovi1.png",
+                        caption: "REGISTRO VISUAL 01 // Macho de Oviraptor exibindo suas penas chamativas em meio a vegetação."
+                    },
+                    {
+                        url: "Imagens/Ovi2.png",
+                        caption: "REGISTRO VISUAL 02 // Fêmea exibindo comportamento de sociabilidade."
+                    }
+                ]
+            },
+            {
+                id: "deinoch",
+                code: "DNC-004",
+                name: "Deinocheirus",
+                trophic: "Onívoro",
+                zone: "forest",
+                length: "11.0 m",
+                height: "4.5 m",
+                weight: 6500,
+                status: "Estável",
+                risk: "Médio",
+                population: "Grupo Fluvial",
+                reproduction: "Ninhos em zonas alagadiças.",
+                behavior: "Onívoro gigante aquático com garras enormes. Consome peixes e plantas aquáticas.",
+                occurrences: "Coexistência tranquila nas zonas rasas habitadas por Irritators.",
+                images: [
+                    {
+                        url: "Imagens/Deinoch1.png",
+                        caption: "REGISTRO VISUAL 01 // Deinocheirus exibindo seu comportamento piscívoro."
+                    },
+                    {
+                        url: "Imagens/Deinoch2.png",
+                        caption: "REGISTRO VISUAL 02 // Exibição de comportamento defensivo parental"
+                    }
+                ]
+            },
+
+            // ==================== 🪽 VOADOR ====================
+            {
+                id: "ptera",
+                code: "PTR-002",
+                name: "Pteranodonte",
+                trophic: "Fauna Aérea",
+                zone: "highlands",
+                length: "3.2 m (Envergadura: 7.5m)",
+                height: "1.8 m",
+                weight: 75,
+                status: "Estável",
+                risk: "Médio",
+                population: "Colônia Aérea Multi-geracional (JP3 Variant)",
+                reproduction: "Nascimentos frequentes nas escarpas do cânion.",
+                behavior: "Agressivo, piscívoro aéreo territorialista do cânion com cachoeira.",
+                occurrences: "Ataques territoriais a drones de monitoramento de baixa altitude.",
+                images: [
+                    {
+                        url: "Imagens/Ptera1.png",
+                        caption: "REGISTRO VISUAL 01 // Pteranodonte sobrevoando as planicies altas."
+                    },
+                    {
+                        url: "Imagens/Ptera2.png",
+                        caption: "REGISTRO VISUAL 02 // Pteranodonte pousando no solo do cânion."
+                    }
+                ]
+            }
+        ];
+
+        // ESTADO DA APLICAÇÃO
+        let currentTab = 'catalog';
+        let searchQuery = '';
+        let trophicFilter = 'ALL';
+        let statusFilter = 'ALL';
+        let sortBy = 'weight_desc';
+        let activeGallery = null;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderApp();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('tab-catalog').addEventListener('click', () => switchTab('catalog'));
+            document.getElementById('tab-zones').addEventListener('click', () => switchTab('zones'));
+
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                searchQuery = e.target.value.toLowerCase();
+                renderCatalog();
+            });
+
+            document.getElementById('trophic-filter').addEventListener('change', (e) => {
+                trophicFilter = e.target.value;
+                renderCatalog();
+            });
+
+            document.getElementById('status-filter').addEventListener('change', (e) => {
+                statusFilter = e.target.value;
+                renderCatalog();
+            });
+
+            document.getElementById('sort-filter').addEventListener('change', (e) => {
+                sortBy = e.target.value;
+                renderCatalog();
+            });
+
+            document.getElementById('close-gallery-btn').addEventListener('click', closeGallery);
+            document.getElementById('gallery-modal').addEventListener('click', (e) => {
+                if (e.target.id === 'gallery-modal') closeGallery();
+            });
+
+            document.getElementById('phase-iv-btn').addEventListener('click', () => {
+                document.getElementById('phase-iv-modal').classList.remove('hidden');
+                document.getElementById('phase-iv-modal').classList.add('flex');
+            });
+
+            document.getElementById('close-phase-iv').addEventListener('click', () => {
+                document.getElementById('phase-iv-modal').classList.add('hidden');
+                document.getElementById('phase-iv-modal').classList.remove('flex');
+            });
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            const catalogTab = document.getElementById('tab-catalog');
+            const zonesTab = document.getElementById('tab-zones');
+            const catalogSec = document.getElementById('catalog-section');
+            const zonesSec = document.getElementById('zones-section');
+
+            // Reset tab styles
+            catalogTab.className = "px-4 py-2 border-b-2 border-transparent text-ingen-muted hover:text-ingen-green font-mono text-xs tracking-widest flex items-center gap-2 transition-all";
+            zonesTab.className = "px-4 py-2 border-b-2 border-transparent text-ingen-muted hover:text-ingen-green font-mono text-xs tracking-widest flex items-center gap-2 transition-all";
+
+            catalogSec.classList.add('hidden');
+            zonesSec.classList.add('hidden');
+
+            if (tab === 'catalog') {
+                catalogTab.className = "px-4 py-2 border-b-2 border-ingen-green text-ingen-green font-mono text-xs tracking-widest flex items-center gap-2 bg-ingen-green/10";
+                catalogSec.classList.remove('hidden');
+                renderCatalog();
+            } else if (tab === 'zones') {
+                zonesTab.className = "px-4 py-2 border-b-2 border-ingen-green text-ingen-green font-mono text-xs tracking-widest flex items-center gap-2 bg-ingen-green/10";
+                zonesSec.classList.remove('hidden');
+                renderZones();
+            }
+        }
+
+        function getFilteredSpecies() {
+            return speciesData.filter(s => {
+                const matchesSearch = s.name.toLowerCase().includes(searchQuery) || (s.code && s.code.toLowerCase().includes(searchQuery));
+                const matchesTrophic = trophicFilter === 'ALL' || s.trophic === trophicFilter;
+                const matchesStatus = statusFilter === 'ALL' || s.status === statusFilter;
+                return matchesSearch && matchesTrophic && matchesStatus;
+            }).sort((a, b) => {
+                if (sortBy === 'weight_desc') return b.weight - a.weight;
+                if (sortBy === 'length_desc') return parseFloat(b.length) - parseFloat(a.length);
+                if (sortBy === 'height_desc') return parseFloat(b.height) - parseFloat(a.height);
+                if (sortBy === 'name_asc') return a.name.localeCompare(b.name);
+                return 0;
+            });
+        }
+
+        function renderCatalog() {
+            const grid = document.getElementById('species-grid');
+            const filtered = getFilteredSpecies();
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 border border-dashed border-ingen-border bg-ingen-card/40 rounded-lg">
+                        <i data-lucide="alert-triangle" class="w-10 h-10 text-ingen-amber mx-auto mb-2 opacity-60"></i>
+                        <p class="font-mono text-ingen-amber tracking-wider text-sm">NENHUM ESPÉCIME ENCONTRADO PARÂMETROS ATUAIS.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            grid.innerHTML = filtered.map(s => {
+                const zoneObj = zonesData.find(z => z.id === s.zone);
+                const riskColor = s.risk === 'Extremo' ? 'text-ingen-red border-ingen-red/40 bg-ingen-red/10' :
+                                  s.risk === 'Crítico' ? 'text-ingen-amber border-ingen-amber/40 bg-ingen-amber/10' :
+                                  s.risk === 'Médio' ? 'text-ingen-amber border-ingen-amber/40 bg-ingen-amber/10' :
+                                  'text-ingen-green border-ingen-green/40 bg-ingen-green/10';
+
+                return `
+                    <div class="bg-ingen-card border border-ingen-border rounded-lg p-5 flex flex-col justify-between hover:border-ingen-green/50 transition-all shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-ingen-green/10 text-ingen-green text-[10px] font-mono px-2.5 py-1 border-b border-l border-ingen-green/30 rounded-bl">
+                            ${s.code || 'SYS-000'}
+                        </div>
+
+                        <div>
+                            <div class="mb-3">
+                                <span class="text-[10px] font-mono uppercase text-ingen-green/80 tracking-widest">${s.trophic}</span>
+                                <h3 class="text-lg font-bold font-mono text-white tracking-tight leading-snug">${s.name}</h3>
+                                <p class="text-xs font-mono text-ingen-muted flex items-center gap-1 mt-0.5">
+                                    <i data-lucide="map-pin" class="w-3 h-3 text-ingen-green"></i> ${zoneObj ? zoneObj.name : 'Zona Indefinida'}
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-2 text-xs font-mono mb-3 bg-ingen-black/60 p-2.5 rounded border border-ingen-border/50 text-center">
+                                <div>
+                                    <span class="text-ingen-muted block text-[9px] uppercase">Comprimento</span>
+                                    <span class="text-white font-semibold text-[11px]">${s.length}</span>
+                                </div>
+                                <div>
+                                    <span class="text-ingen-muted block text-[9px] uppercase">Altura</span>
+                                    <span class="text-ingen-cyan font-semibold text-[11px]">${s.height || 'N/A'}</span>
+                                </div>
+                                <div>
+                                    <span class="text-ingen-muted block text-[9px] uppercase">Peso</span>
+                                    <span class="text-ingen-amber font-semibold text-[11px]">${s.weight ? s.weight.toLocaleString() + ' kg' : 'N/A'}</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2 text-xs font-mono mb-3 bg-ingen-black/30 p-2 rounded border border-ingen-border/30">
+                                <div>
+                                    <span class="text-ingen-muted block text-[10px]">STATUS:</span>
+                                    <span class="text-ingen-green">${s.status}</span>
+                                </div>
+                                <div>
+                                    <span class="text-ingen-muted block text-[10px]">RISCO:</span>
+                                    <span class="px-1 py-0.2 rounded border text-[9px] ${riskColor} inline-block font-bold mt-0.5">${s.risk}</span>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1.5 text-xs font-mono mb-4 text-ingen-text">
+                                <div>
+                                    <strong class="text-ingen-green text-[11px]">CENSO:</strong>
+                                    <p class="text-ingen-muted text-[11px] leading-tight">${s.population}</p>
+                                </div>
+                                <div>
+                                    <strong class="text-ingen-green text-[11px]">REPRODUÇÃO:</strong>
+                                    <p class="text-ingen-muted text-[11px] leading-tight">${s.reproduction}</p>
+                                </div>
+                                <div>
+                                    <strong class="text-ingen-green text-[11px]">COMPORTAMENTO:</strong>
+                                    <p class="text-ingen-muted text-[11px] leading-tight">${s.behavior}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 border-t border-ingen-border">
+                            <button onclick="openGallery('${s.id}', 0)" class="w-full bg-ingen-green/10 hover:bg-ingen-green/20 text-ingen-green border border-ingen-green/40 rounded py-2 text-xs font-mono tracking-wider font-semibold transition-all flex items-center justify-center gap-2">
+                                <i data-lucide="image" class="w-4 h-4"></i>
+                                VER REGISTROS VISUAIS (${s.images ? s.images.length : 0} IMAGENS)
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function renderZones() {
+            const container = document.getElementById('zones-container');
+            container.innerHTML = zonesData.map(zone => {
+                const zoneSpecies = speciesData.filter(s => s.zone === zone.id);
+                return `
+                    <div class="bg-ingen-card border border-ingen-border rounded-lg p-6 relative">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4 pb-4 border-b border-ingen-border">
+                            <div>
+                                <span class="text-xs font-mono text-ingen-green uppercase tracking-widest">TERRITÓRIO SENSORIADO</span>
+                                <h3 class="text-xl font-bold font-mono text-white">${zone.name}</h3>
+                                <p class="text-xs font-mono text-ingen-muted mt-1">${zone.description}</p>
+                            </div>
+                            <div class="flex items-center gap-2 bg-ingen-black/60 px-3 py-1.5 rounded border border-ingen-border">
+                                <i data-lucide="shield-alert" class="w-4 h-4 text-ingen-amber"></i>
+                                <span class="text-xs font-mono text-ingen-text">AMEAÇA: <span class="text-ingen-amber font-bold">${zone.threatLevel}</span></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="text-xs font-mono text-ingen-green tracking-wider uppercase mb-2">Ecológica & Cobertura:</h4>
+                            <p class="text-xs font-mono text-ingen-text leading-relaxed bg-ingen-black/40 p-3 rounded border border-ingen-border/50">${zone.ecologicalNotes}</p>
+                        </div>
+
+                        <div>
+                            <h4 class="text-xs font-mono text-ingen-green tracking-wider uppercase mb-3 flex items-center gap-1.5">
+                                <i data-lucide="dna" class="w-4 h-4 text-ingen-green"></i>
+                                Espécies Residentes (${zoneSpecies.length}):
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                                ${zoneSpecies.map(s => `
+                                    <div class="bg-ingen-black/60 border border-ingen-border p-3 rounded flex items-center justify-between hover:border-ingen-green/40 transition-all">
+                                        <div>
+                                            <span class="text-[9px] font-mono text-ingen-green block">${s.code}</span>
+                                            <span class="text-xs font-mono text-white font-semibold block">${s.name}</span>
+                                            <span class="text-[10px] font-mono text-ingen-muted">C: ${s.length} | A: ${s.height || 'N/A'} | P: ${s.weight ? s.weight.toLocaleString() + 'kg' : 'N/A'}</span>
+                                        </div>
+                                        <button onclick="openGallery('${s.id}', 0)" class="p-1.5 bg-ingen-green/10 hover:bg-ingen-green/20 text-ingen-green rounded border border-ingen-green/30 text-xs flex items-center gap-1">
+                                            <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        // GALERIA FOTOGRÁFICA INTERATIVA (POP-UP)
+        function openGallery(speciesId, imageIndex) {
+            const species = speciesData.find(s => s.id === speciesId);
+            if (!species || !species.images) return;
+
+            activeGallery = {
+                species: species,
+                activeIndex: imageIndex
+            };
+
+            updateGalleryModal();
+            const modal = document.getElementById('gallery-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeGallery() {
+            const modal = document.getElementById('gallery-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            activeGallery = null;
+        }
+
+        function switchGalleryImage(index) {
+            if (!activeGallery) return;
+            activeGallery.activeIndex = index;
+            updateGalleryModal();
+        }
+
+        function updateGalleryModal() {
+            if (!activeGallery) return;
+
+            const { species, activeIndex } = activeGallery;
+            const currentImg = species.images[activeIndex];
+
+            document.getElementById('gallery-species-name').textContent = species.name;
+            document.getElementById('gallery-species-code').textContent = `[${species.code || 'SYS-000'}] - REGISTRO FOTOGRÁFICO DE CAMPO`;
+            
+            const imgElem = document.getElementById('gallery-img');
+            imgElem.src = currentImg.url;
+            imgElem.alt = species.name;
+
+            document.getElementById('gallery-caption').textContent = currentImg.caption;
+
+            const tabsContainer = document.getElementById('gallery-tabs');
+            tabsContainer.innerHTML = species.images.map((img, idx) => `
+                <button onclick="switchGalleryImage(${idx})" class="px-3 py-1.5 rounded text-xs font-mono tracking-wider transition-all flex items-center gap-1.5 ${idx === activeIndex ? 'bg-ingen-green text-black font-bold' : 'bg-ingen-black text-ingen-green hover:bg-ingen-green/20 border border-ingen-border'}">
+                    <i data-lucide="image" class="w-3.5 h-3.5"></i>
+                    REGISTRO 0${idx + 1}
+                </button>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        function renderApp() {
+            renderCatalog();
+        }
+    </script>
+</body>
+</html>
