@@ -1,4 +1,3 @@
-<!-- ... existing code ... -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -142,6 +141,11 @@
                             <p class="text-ingen-amber font-bold">TOP SECRET // INTERNAL DOSSIER</p>
                         </div>
                     </div>
+                    <!-- BOTÃO RELATÓRIO FINAL EM VÍDEO -->
+                    <button id="final-video-btn" class="bg-ingen-cyan/10 hover:bg-ingen-cyan/20 border border-ingen-cyan/40 text-ingen-cyan px-4 py-2.5 rounded-md transition-all flex items-center gap-2 font-mono font-bold shadow-lg hover:shadow-ingen-cyan/20">
+                        <i data-lucide="video" class="w-4 h-4"></i>
+                        RELATÓRIO FINAL (VÍDEO)
+                    </button>
                     <button id="phase-iv-btn" class="bg-ingen-green/10 hover:bg-ingen-green/20 border border-ingen-green/40 text-ingen-green px-4 py-2.5 rounded-md transition-all flex items-center gap-2 font-mono font-bold">
                         <i data-lucide="file-text" class="w-4 h-4"></i>
                         PROTOCOLO FASE IV
@@ -178,15 +182,6 @@
                             <option value="Herbívoro Pequeno">Herbívoros Pequenos</option>
                             <option value="Onívoro">Onívoros</option>
                             <option value="Fauna Aérea">Fauna Aérea</option>
-                        </select>
-                    </div>
-
-                    <div class="md:col-span-3">
-                        <select id="status-filter" class="w-full bg-ingen-black border border-ingen-border rounded-md px-3 py-2 text-sm text-white focus:outline-none focus:border-ingen-green font-mono">
-                            <option value="ALL">Todos os Status</option>
-                            <option value="Em Expansão">Em Expansão</option>
-                            <option value="Estável">Estável</option>
-                            <option value="Vulnerável">Vulnerável</option>
                         </select>
                     </div>
 
@@ -337,8 +332,57 @@
             </div>
 
             <div class="p-4 bg-ingen-dark border-t border-ingen-border flex justify-end">
-                <button onclick="document.getElementById('phase-iv-modal').classList.add('hidden')" class="bg-ingen-green text-black font-mono font-bold px-4 py-2 rounded text-xs hover:bg-ingen-greenMuted transition-colors">
+                <button onclick="document.getElementById('phase-iv-modal').classList.add('hidden'); document.getElementById('phase-iv-modal').classList.remove('flex');" class="bg-ingen-green text-black font-mono font-bold px-4 py-2 rounded text-xs hover:bg-ingen-greenMuted transition-colors">
                     CONFIRMAR LEITURA
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FINAL VIDEO REPORT MODAL -->
+    <div id="final-video-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 items-center justify-center p-4 hidden">
+        <div class="bg-ingen-card border border-ingen-cyan/50 rounded-lg max-w-4xl w-full max-h-[95vh] flex flex-col shadow-2xl relative overflow-hidden">
+            <div class="p-4 bg-ingen-dark border-b border-ingen-border flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="video" class="w-5 h-5 text-ingen-cyan"></i>
+                    <div>
+                        <h3 class="font-mono font-bold text-white text-lg">RELATÓRIO FINAL: REFLEXÃO ECOLÓGICA</h3>
+                        <p class="text-xs font-mono text-ingen-muted">ARQUIVO MULTIMÍDIA // DIVISION FIELD EPILOGUE</p>
+                    </div>
+                </div>
+                <button id="close-final-video" class="text-ingen-muted hover:text-white transition-colors p-1">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <div class="p-4 flex-1 flex flex-col gap-4 overflow-y-auto bg-ingen-black">
+                <!-- PLAYER DE VÍDEO -->
+                <div class="relative w-full aspect-video bg-black rounded border border-ingen-border overflow-hidden flex items-center justify-center">
+                    <video id="final-report-video" controls class="w-full h-full object-contain">
+                        <source src="Video/Santuário Oquito IV - Relatório Final (1).mp4" type="video/mp4">
+                        Seu navegador não suporta a execução de vídeos HTML5.
+                    </video>
+                </div>
+
+                <!-- REFLEXÃO DOS CIENTISTAS -->
+                <div class="bg-ingen-dark/90 border border-ingen-border/80 p-5 rounded-md space-y-3 font-mono text-xs">
+                    <div class="flex items-center gap-2 border-b border-ingen-border/60 pb-2">
+                        <span class="text-ingen-cyan font-bold">REGISTRO AUDITIVO DA EQUIPE DE CAMPO</span>
+                        <span class="text-ingen-muted">| CHIEF ECOLOGIST LOG</span>
+                    </div>
+                    <p class="text-ingen-text leading-relaxed italic">
+                        "Ao encerrarmos a observação no Santuário Oquito IV, o que testemunhamos transcende a mera biologia ou genética. A natureza se manifestou em sua forma mais pura: uma dança eterna entre a beleza sublime das grandes manadas e a brutalidade impiedosa da sobrevivência."
+                    </p>
+                    <p class="text-ingen-text leading-relaxed">
+                        "A relação entre caçador e presa aqui não é ditada pela crueldade, mas por um equilíbrio antigo renascido. Cada perseguição do <i>Carcharodontossauro</i>, cada formação defensiva dos <i>Triceratops</i> e o domínio silencioso do <i>Espinossauro</i> nos rios provam que a vida não busca apenas existir — ela exige dominar o espaço e perpetuar sua linhagem. O Santuário Oquito IV tornou-se um monumento à resiliência pré-histórica."
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-4 bg-ingen-dark border-t border-ingen-border flex justify-between items-center font-mono text-xs">
+                <span class="text-ingen-muted text-[10px]">INGEN ARCHIVAL FOOTAGE // OQUITO IV</span>
+                <button onclick="document.getElementById('final-video-modal').classList.add('hidden'); document.getElementById('final-video-modal').classList.remove('flex'); document.getElementById('final-report-video').pause();" class="bg-ingen-cyan/20 border border-ingen-cyan/50 text-ingen-cyan font-bold px-4 py-2 rounded hover:bg-ingen-cyan/30 transition-colors">
+                    FECHAR TRANSMISSÃO
                 </button>
             </div>
         </div>
@@ -1097,6 +1141,29 @@
                 document.getElementById('phase-iv-modal').classList.add('hidden');
                 document.getElementById('phase-iv-modal').classList.remove('flex');
             });
+
+            // RELATÓRIO FINAL EM VÍDEO EVENT LISTENERS
+            const finalVideoModal = document.getElementById('final-video-modal');
+            const finalVideoElem = document.getElementById('final-report-video');
+
+            document.getElementById('final-video-btn').addEventListener('click', () => {
+                finalVideoModal.classList.remove('hidden');
+                finalVideoModal.classList.add('flex');
+            });
+
+            document.getElementById('close-final-video').addEventListener('click', () => {
+                finalVideoModal.classList.add('hidden');
+                finalVideoModal.classList.remove('flex');
+                if (finalVideoElem) finalVideoElem.pause();
+            });
+
+            finalVideoModal.addEventListener('click', (e) => {
+                if (e.target.id === 'final-video-modal') {
+                    finalVideoModal.classList.add('hidden');
+                    finalVideoModal.classList.remove('flex');
+                    if (finalVideoElem) finalVideoElem.pause();
+                }
+            });
         }
 
         function switchTab(tab) {
@@ -1335,6 +1402,12 @@
 
             lucide.createIcons();
         }
+
+        // EXPORTAR FUNÇÕES PARA O ESCOPO GLOBAL (COMPATIBILIDADE GOOGLE SITES IFRAME)
+        window.openGallery = openGallery;
+        window.closeGallery = closeGallery;
+        window.switchGalleryImage = switchGalleryImage;
+        window.switchTab = switchTab;
 
         function renderApp() {
             renderCatalog();
